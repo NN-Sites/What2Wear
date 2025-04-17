@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>What2Wear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Rubik', Arial, sans-serif;
+      background: #f3f3f3;
+      direction: rtl;
+      text-align: right;
+      padding: 3rem;
+      color: #333;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    label {
+      display: block;
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+    }
+    select, button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.75rem;
+      font-size: 1.2rem;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-weight: 700;
+    }
+    button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    button:active {
+      background-color: #388e3c;
+    }
+    table {
+      width: 100%;
+      margin-top: 2rem;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+    .share-buttons {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .share-buttons button {
+      background-color: #007BFF;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .share-buttons button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>מה ללבוש?</h1>
+
+  <form id="outfitForm">
+    <label>מין:
+      <select name="gender">
+        <option value="זכר">זכר</option>
+        <option value="נקבה">נקבה</option>
+      </select>
+    </label>
+
+    <label>סוג האירוע:
+      <select name="event">
+        <option value="חתונה">חתונה</option>
+        <option value="בר מצווה">בר מצווה</option>
+        <option value="טיול">טיול</option>
+        <option value="פסטיבל">פסטיבל</option>
+        <option value="יום עבודה">יום עבודה</option>
+      </select>
+    </label>
+
+    <label>עונה:
+      <select name="season">
+        <option value="חורף">חורף</option>
+        <option value="אביב">אביב</option>
+        <option value="קיץ">קיץ</option>
+        <option value="סתיו">סתיו</option>
+      </select>
+    </label>
+
+    <label>זמן האירוע:
+      <select name="timeOfDay">
+        <option value="בוקר">בוקר</option>
+        <option value="צהריים">צהריים</option>
+        <option value="ערב">ערב</option>
+        <option value="לילה">לילה</option>
+      </select>
+    </label>
+
+    <label>סגנון:
+      <select name="style">
+        <option value="אלגנט">אלגנט</option>
+        <option value="יומיומי">יומיומי</option>
+        <option value="ספורט">ספורט</option>
+        <option value="חגיגי">חגיגי</option>
+        <option value="חוף">חוף</option>
+        <option value="רחוב">רחוב</option>
+      </select>
+    </label>
+
+    <label>צבע מועדף:
+      <select name="color">
+        <option>שחור</option>
+        <option>לבן</option>
+        <option>כחול</option>
+        <option>אדום</option>
+        <option>צהוב</option>
+        <option>ירוק</option>
+        <option>ורוד</option>
+        <option>אפור</option>
+        <option>חום</option>
+        <option>כתום</option>
+        <option>כחול וזהב</option>
+        <option>לבן ושחור</option>
+        <option>אדום וזהב</option>
+        <option>שחור וירוק</option>
+        <option>ורוד וכסף</option>
+      </select>
+    </label>
+
+    <button type="submit">קבל המלצה</button>
+  </form>
+
+  <div id="result"></div>
+
+  <div class="share-buttons" style="display: none;" id="shareButtons">
+    <button onclick="copyLook()">העתק ללוח</button>
+    <button onclick="shareWhatsApp()">שלח ב-WhatsApp</button>
+  </div>
+
+  <script>
+    const form = document.getElementById('outfitForm');
+    const resultDiv = document.getElementById('result');
+    let shareText = '';
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      const gender = data.get('gender');
+      const event = data.get('event');
+      const season = data.get('season');
+      const time = data.get('timeOfDay');
+      const style = data.get('style');
+      const color = data.get('color');
+
+      const shirt = season === 'חורף' ? 'סוודר' : (season === 'קיץ' ? 'חולצה קצרה' : 'חולצה מכופתרת');
+      const pants = style === 'אלגנט' ? 'מכנס מחויט' : 'מכנס קל';
+      const shoes = style === 'חגיגי' ? 'נעליים אלגנטיות' : (season === 'קיץ' ? 'כפכפים או סניקרס' : 'נעלי ספורט');
+      const extras = ['לבוש חגיגי', 'ג׳קט או עליונית', `סגנון ${style}`, `צבע מועדף: ${color}`];
+
+      shareText = `זה הלוק שיצרתי ב-What2Wear
+לאירוע: ${event}
+עונה: ${season}
+זמן: ${time}
+
+חולצה: ${shirt}
+מכנס: ${pants}
+נעליים: ${shoes}
+תוספות:
+- ${extras.join('\n- ')}`;
+
+      resultDiv.innerHTML = `
+        <table>
+          <thead>
+            <tr><th>חולצה</th><th>מכנס</th><th>נעליים</th><th>עוד</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>${shirt}</td>
+              <td>${pants}</td>
+              <td>${shoes}</td>
+              <td>${extras.join('<br>')}</td>
+            </tr>
+          </tbody>
+        </table>
+      `;
+      document.getElementById('shareButtons').style.display = 'flex';
+    });
+
+    function copyLook() {
+      navigator.clipboard.writeText(shareText).then(() => {
+        alert('הלוק הועתק בהצלחה!');
+      });
+    }
+
+    function shareWhatsApp() {
+      const url = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
