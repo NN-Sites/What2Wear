@@ -3,162 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <title>What2Wear</title>
-  <link rel="icon" href="https://i.postimg.cc/cCWcB62x/What2-Wear-logo.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Rubik', Arial, sans-serif;
-      background: #f3f3f3;
-      direction: rtl;
-      text-align: right;
-      padding: 3rem;
+      font-family: 'Rubik', sans-serif;
+      padding: 2rem;
+      background: #f0f0f0;
       color: #333;
+      direction: rtl;
     }
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 2rem;
+    }
+    form {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
     }
     label {
-      display: block;
-      margin-top: 1.5rem;
-      font-size: 1.2rem;
+      font-weight: bold;
     }
     select, button {
-      width: 100%;
-      padding: 1rem;
-      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      border-radius: 0.75rem;
-      font-size: 1.2rem;
     }
     button {
       background-color: #4CAF50;
       color: white;
+      font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      font-weight: 700;
+      transition: 0.2s ease;
     }
     button:hover {
-      background-color: #45a049;
-      transform: scale(1.05);
-    }
-    button:active {
       background-color: #388e3c;
     }
     table {
       width: 100%;
-      margin-top: 2rem;
       border-collapse: collapse;
+      margin-top: 2rem;
       background: white;
     }
     th, td {
       border: 1px solid #ccc;
-      padding: 1.5rem;
+      padding: 1rem;
       text-align: center;
-      font-size: 1.2rem;
-    }
-    .share-buttons {
-      margin-top: 2rem;
-      display: flex;
-      gap: 1rem;
     }
     .share-buttons button {
-      background-color: #007BFF;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    .share-buttons button:hover {
-      background-color: #0056b3;
-      transform: scale(1.05);
+      margin: 0.5rem 0.3rem;
     }
   </style>
 </head>
 <body>
-
-  <h1>מה ללבוש?</h1>
-
+  <h1>מה ללבוש היום? 👕👖</h1>
   <form id="outfitForm">
-    <label>מין:
-      <select name="gender">
-        <option value="זכר">זכר</option>
-        <option value="נקבה">נקבה</option>
-      </select>
-    </label>
-
-    <label>סוג האירוע:
-      <select name="event">
-        <option value="חתונה">חתונה</option>
-        <option value="בר מצווה">בר מצווה</option>
-        <option value="טיול">טיול</option>
-        <option value="פסטיבל">פסטיבל</option>
-        <option value="יום עבודה">יום עבודה</option>
-      </select>
-    </label>
-
-    <label>עונה:
-      <select name="season">
-        <option value="חורף">חורף</option>
-        <option value="אביב">אביב</option>
-        <option value="קיץ">קיץ</option>
-        <option value="סתיו">סתיו</option>
-      </select>
-    </label>
-
-    <label>זמן האירוע:
-      <select name="timeOfDay">
-        <option value="בוקר">בוקר</option>
-        <option value="צהריים">צהריים</option>
-        <option value="ערב">ערב</option>
-        <option value="לילה">לילה</option>
-      </select>
-    </label>
-
-    <label>סגנון:
-      <select name="style">
-        <option value="אלגנט">אלגנט</option>
-        <option value="יומיומי">יומיומי</option>
-        <option value="ספורט">ספורט</option>
-        <option value="חגיגי">חגיגי</option>
-        <option value="חוף">חוף</option>
-        <option value="רחוב">רחוב</option>
-      </select>
-    </label>
-
-    <label>צבע מועדף:
-      <select name="color">
-        <option>שחור</option>
-        <option>לבן</option>
-        <option>כחול</option>
-        <option>אדום</option>
-        <option>צהוב</option>
-        <option>ירוק</option>
-        <option>ורוד</option>
-        <option>אפור</option>
-        <option>חום</option>
-        <option>כתום</option>
-        <option>כחול וזהב</option>
-        <option>לבן ושחור</option>
-        <option>אדום וזהב</option>
-        <option>שחור וירוק</option>
-        <option>ורוד וכסף</option>
-      </select>
-    </label>
-
-    <button type="submit">קבל המלצה</button>
+    <label>מין:</label>
+    <select name="gender">
+      <option>גבר</option>
+      <option>אישה</option>
+    </select>
+    <label>סוג האירוע:</label>
+    <select name="event">
+      <option>חתונה</option>
+      <option>בר מצווה</option>
+      <option>אירוע משפחתי</option>
+      <option>יציאה עם חברים</option>
+      <option>טיול</option>
+    </select>
+    <label>עונה:</label>
+    <select name="season">
+      <option>חורף</option>
+      <option>קיץ</option>
+      <option>סתיו</option>
+      <option>אביב</option>
+    </select>
+    <label>זמן ביום:</label>
+    <select name="timeOfDay">
+      <option>בוקר</option>
+      <option>צהריים</option>
+      <option>ערב</option>
+    </select>
+    <label>סגנון לבוש:</label>
+    <select name="style">
+      <option>אלגנט</option>
+      <option>חגיגי</option>
+      <option>יומיומי</option>
+    </select>
+    <label>צבע מועדף:</label>
+    <select name="color">
+      <option>שחור</option>
+      <option>לבן</option>
+      <option>כחול</option>
+      <option>אדום</option>
+      <option>ירוק</option>
+    </select>
+    <button type="submit">קבל המלצה!</button>
   </form>
 
   <div id="result"></div>
-
-  <div class="share-buttons" style="display: none;" id="shareButtons">
-    <button onclick="copyLook()">העתק ללוח</button>
-    <button onclick="shareWhatsApp()">שלח ב-WhatsApp</button>
-  </div>
 
   <script>
     const form = document.getElementById('outfitForm');
     const resultDiv = document.getElementById('result');
     let shareText = '';
+    let currentLook = null;
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
       const data = new FormData(form);
       const gender = data.get('gender');
@@ -172,6 +121,8 @@
       const pants = style === 'אלגנט' ? 'מכנס מחויט' : 'מכנס קל';
       const shoes = style === 'חגיגי' ? 'נעליים אלגנטיות' : (season === 'קיץ' ? 'כפכפים או סניקרס' : 'נעלי ספורט');
       const extras = ['לבוש חגיגי', 'ג׳קט או עליונית', `סגנון ${style}`, `צבע מועדף: ${color}`];
+
+      currentLook = { shirt, pants, shoes, extras, event, season, time };
 
       shareText = `זה הלוק שיצרתי ב-What2Wear
 לאירוע: ${event}
@@ -198,8 +149,13 @@
             </tr>
           </tbody>
         </table>
+        <div class="share-buttons">
+          <button onclick="copyLook()">העתק ללוח</button>
+          <button onclick="shareWhatsApp()">שלח ב-WhatsApp</button>
+          <button onclick="saveLook()">💾 שמור לוק</button>
+          <a href="saved.html"><button>📂 לצפייה בלוקים שנשמרו</button></a>
+        </div>
       `;
-      document.getElementById('shareButtons').style.display = 'flex';
     });
 
     function copyLook() {
@@ -211,6 +167,13 @@
     function shareWhatsApp() {
       const url = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
       window.open(url, '_blank');
+    }
+
+    function saveLook() {
+      let saved = JSON.parse(localStorage.getItem('savedLooks') || '[]');
+      saved.push(currentLook);
+      localStorage.setItem('savedLooks', JSON.stringify(saved));
+      alert('הלוק נשמר בהצלחה!');
     }
   </script>
 </body>
