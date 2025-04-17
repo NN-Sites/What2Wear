@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>הלוקים שלי - What2Wear</title>
+  <style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      padding: 2rem;
+      background: #fafafa;
+      color: #333;
+      direction: rtl;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      text-align: center;
+    }
+    button {
+      padding: 0.75rem 1.5rem;
+      margin: 1rem 0.5rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+    button:hover {
+      background-color: #388e3c;
+    }
+  </style>
+</head>
+<body>
+  <h1>הלוקים ששמרתי</h1>
+  <div>
+    <button onclick="goBack()">⬅ חזור</button>
+    <button onclick="clearLooks()">🗑 מחק את כל הלוקים</button>
+  </div>
+  <table id="looksTable">
+    <thead>
+      <tr>
+        <th>אירוע</th>
+        <th>עונה</th>
+        <th>זמן</th>
+        <th>חולצה</th>
+        <th>מכנס</th>
+        <th>נעליים</th>
+        <th>תוספות</th>
+        <th>מחיקה</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    function loadLooks() {
+      const saved = JSON.parse(localStorage.getItem('savedLooks') || '[]');
+      const tbody = document.querySelector('tbody');
+      tbody.innerHTML = '';
+
+      saved.forEach((look, i) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${look.event}</td>
+          <td>${look.season}</td>
+          <td>${look.time}</td>
+          <td>${look.shirt}</td>
+          <td>${look.pants}</td>
+          <td>${look.shoes}</td>
+          <td>${look.extras.join('<br>')}</td>
+          <td><button onclick="deleteLook(${i})">❌</button></td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function deleteLook(index) {
+      let saved = JSON.parse(localStorage.getItem('savedLooks') || '[]');
+      saved.splice(index, 1);
+      localStorage.setItem('savedLooks', JSON.stringify(saved));
+      loadLooks();
+    }
+
+    function clearLooks() {
+      if (confirm('אתה בטוח שברצונך למחוק את כל הלוקים?')) {
+        localStorage.removeItem('savedLooks');
+        loadLooks();
+      }
+    }
+
+    function goBack() {
+      window.location.href = 'index.html';
+    }
+
+    loadLooks();
+  </script>
+</body>
+</html>
